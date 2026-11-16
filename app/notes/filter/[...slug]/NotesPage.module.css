@@ -1,0 +1,4 @@
+.app { width: 100%; min-width: 0; }
+.toolbar { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; }
+.button { border: 0; border-radius: 8px; padding: 12px 18px; background: #1e305b; color: white; font-weight: 600; cursor: pointer; }
+.button:hover { background: #2e4d94; }

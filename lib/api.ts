@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { AxiosResponse } from 'axios';
-import type { NewNote, Note } from '../types/note';
+import type { NewNote, Note, NoteTag } from '@/types/note';
 
 export interface FetchNotesResponse {
   notes: Note[];
@@ -11,6 +11,7 @@ interface FetchNotesParams {
   page: number;
   perPage: number;
   search?: string;
+  tag?: NoteTag;
 }
 
 const api = axios.create({
@@ -24,12 +25,14 @@ export async function fetchNotes({
   page,
   perPage,
   search,
+  tag,
 }: FetchNotesParams): Promise<FetchNotesResponse> {
   const response: AxiosResponse<FetchNotesResponse> = await api.get('/notes', {
     params: {
       page,
       perPage,
       ...(search ? { search } : {}),
+      ...(tag ? { tag } : {}), // Never send 'all': API only accepts real tags.
     },
   });
   return response.data;

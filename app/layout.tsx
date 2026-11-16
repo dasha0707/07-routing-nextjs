@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
@@ -11,8 +12,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
+  modal: ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -20,6 +23,7 @@ export default function RootLayout({
         <TanStackProvider>
           <Header />
           {children}
+          {modal}
           <Footer />
         </TanStackProvider>
       </body>
